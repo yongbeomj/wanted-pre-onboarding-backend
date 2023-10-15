@@ -1,14 +1,14 @@
 package com.wanted.preonboarding.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Application extends DateField {
 
@@ -24,14 +24,4 @@ public class Application extends DateField {
     @ManyToOne(optional = false)
     private JobOpening jobOpening; // 채용공고 ID
 
-    protected Application() {}
-
-    private Application(User user, JobOpening jobOpening) {
-        this.user = user;
-        this.jobOpening = jobOpening;
-    }
-
-    public static Application of(User user, JobOpening jobOpening) {
-        return new Application(user, jobOpening);
-    }
 }

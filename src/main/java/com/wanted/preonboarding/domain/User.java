@@ -1,14 +1,14 @@
 package com.wanted.preonboarding.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User extends DateField {
 
@@ -23,18 +23,5 @@ public class User extends DateField {
     private String userName; // 이름
 
     private String email; // 이메일
-
-    protected User() {}
-
-    private User(String password, String userName, String email) {
-        this.password = password;
-        this.userName = userName;
-        this.email = email;
-    }
-
-    public static User of(String password, String userName, String email) {
-        return new User(password, userName, email);
-    }
-
 
 }

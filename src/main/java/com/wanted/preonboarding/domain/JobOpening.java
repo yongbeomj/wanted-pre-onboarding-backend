@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class JobOpening extends DateField {
 
@@ -29,17 +31,4 @@ public class JobOpening extends DateField {
 
     private String skill; // 사용 기술
 
-    protected JobOpening() {}
-
-    private JobOpening(Company company, String position, int reward, String content, String skill) {
-        this.company = company;
-        this.position = position;
-        this.reward = reward;
-        this.content = content;
-        this.skill = skill;
-    }
-
-    public static JobOpening of(Company company, String position, int reward, String content, String skill) {
-        return new JobOpening(company, position, reward, content, skill);
-    }
 }
