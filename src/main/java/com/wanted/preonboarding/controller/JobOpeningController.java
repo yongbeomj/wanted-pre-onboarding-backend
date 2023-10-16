@@ -1,16 +1,13 @@
 package com.wanted.preonboarding.controller;
 
+import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
+import com.wanted.preonboarding.dto.common.ResponseDto;
 import com.wanted.preonboarding.service.JobOpeningService;
+import com.wanted.preonboarding.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,28 +18,14 @@ public class JobOpeningController {
 
     // 채용공고 등록
     @PostMapping
-    public ResponseEntity<?> registPost(@RequestBody JobOpeningDto jobOpeningDto) {
-        boolean result = jobOpeningService.savePost(jobOpeningDto);
+    public Object test(@RequestBody JobOpeningDto jobOpeningDto) {
+        try {
+            jobOpeningService.savePost(jobOpeningDto);
 
-        String code = "";
-        String status = "";
-        String message = "";
-
-        if (result) {
-            code = "0";
-            status = "success";
-        } else {
-            code = "999";
-            status = "error";
-            message = "error message";
+            return ResponseUtil.success(jobOpeningDto);
+        } catch (Exception e) {
+            return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
         }
-
-        Map<String, String> responseObj = new HashMap<>();
-        responseObj.put("code", code);
-        responseObj.put("status", status);
-        responseObj.put("message", message);
-
-        return ResponseEntity.ok().body(responseObj);
     }
 
 }

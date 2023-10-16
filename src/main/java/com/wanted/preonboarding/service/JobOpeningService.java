@@ -5,7 +5,9 @@ import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
 import com.wanted.preonboarding.repository.CompanyRepository;
 import com.wanted.preonboarding.repository.JobOpeningRepository;
+import com.wanted.preonboarding.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,17 +21,25 @@ public class JobOpeningService {
 
     // 채용공고 등록
     @Transactional
-    public boolean savePost(JobOpeningDto jobOpeningDto) {
-        Company company = companyRepository.getReferenceById(jobOpeningDto.getCompanyId());
-        JobOpening jobOpening = JobOpening.builder()
-                .company(company)
-                .position(jobOpeningDto.getPosition())
-                .reward(jobOpeningDto.getReward())
-                .content(jobOpeningDto.getContent())
-                .skill(jobOpeningDto.getSkill())
-                .build();
-        jobOpeningRepository.save(jobOpening);
-        return true;
+    public Object savePost(JobOpeningDto jobOpeningDto) {
+        try {
+            Company company = companyRepository.getReferenceById(jobOpeningDto.getCompanyId());
+            JobOpening jobOpening = JobOpening.builder()
+                    .company(company)
+                    .position(jobOpeningDto.getPosition())
+                    .reward(jobOpeningDto.getReward())
+                    .content(jobOpeningDto.getContent())
+                    .skill(jobOpeningDto.getSkill())
+                    .build();
+            jobOpeningRepository.save(jobOpening);
+
+            return ResponseUtil.success(jobOpening);
+        } catch (Exception e) {
+            return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
+        }
+
     }
+
+
 
 }
