@@ -73,4 +73,18 @@ public class JobOpeningService {
         return jobOpeningRepository.findAll(pageable);
     }
 
+    // 채용공고 상세 조회
+    public Object getDetailPost(Long jobId) {
+        JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+        JobOpeningDto jobOpeningDto = JobOpeningDto.builder()
+                .jobId(jobOpening.getJobId())
+                .position(jobOpening.getPosition())
+                .reward(jobOpening.getReward())
+                .skill(jobOpening.getSkill())
+                .content(jobOpening.getContent())
+                .build();
+
+        return ResponseUtil.success(jobOpeningDto);
+    }
+
 }

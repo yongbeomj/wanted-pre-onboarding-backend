@@ -43,5 +43,9 @@ public class JobOpeningController {
         return jobOpeningService.getPost(pageable);
     }
 
-
+    // 채용공고 상세 조회
+    @GetMapping("/{jobId}")
+    public Object getDetailPost(@PathVariable Long jobId) {
+        return jobOpeningService.getDetailPost(jobId);
+    }
 }
