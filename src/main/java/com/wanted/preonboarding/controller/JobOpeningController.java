@@ -1,8 +1,6 @@
 package com.wanted.preonboarding.controller;
 
-import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
-import com.wanted.preonboarding.dto.common.ResponseDto;
 import com.wanted.preonboarding.service.JobOpeningService;
 import com.wanted.preonboarding.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +24,12 @@ public class JobOpeningController {
         } catch (Exception e) {
             return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    // 채용공고 수정
+    @PostMapping(value="/{jobId}")
+    public Object updatePost(@PathVariable Long jobId, @RequestBody JobOpeningDto jobOpeningDto) {
+        return jobOpeningService.updatePost(jobId, jobOpeningDto);
     }
 
 }
