@@ -8,10 +8,13 @@ import com.wanted.preonboarding.repository.CompanyRepository;
 import com.wanted.preonboarding.repository.JobOpeningRepository;
 import com.wanted.preonboarding.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,6 +66,11 @@ public class JobOpeningService {
         } catch (Exception e){
             return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    // 채용공고 조회
+    public Page<JobOpening> getPost(Pageable pageable) {
+        return jobOpeningRepository.findAll(pageable);
     }
 
 }
