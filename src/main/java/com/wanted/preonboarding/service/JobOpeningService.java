@@ -1,6 +1,5 @@
 package com.wanted.preonboarding.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wanted.preonboarding.domain.Company;
 import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
