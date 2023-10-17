@@ -1,9 +1,16 @@
 package com.wanted.preonboarding.controller;
 
+import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
 import com.wanted.preonboarding.service.JobOpeningService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,5 +36,12 @@ public class JobOpeningController {
     public Object deletePost(@PathVariable Long jobId, @RequestBody JobOpeningDto jobOpeningDto) {
         return jobOpeningService.deletePost(jobId);
     }
+
+    // 채용공고 조회
+    @GetMapping
+    public Page<JobOpening> getPost(@PageableDefault Pageable pageable) {
+        return jobOpeningService.getPost(pageable);
+    }
+
 
 }
