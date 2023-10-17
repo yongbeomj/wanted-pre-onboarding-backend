@@ -24,4 +24,10 @@ public class JobOpeningController {
         return jobOpeningService.updatePost(jobId, jobOpeningDto);
     }
 
+    // 채용공고 삭제
+    @DeleteMapping("/{jobId}")
+    public Object deletePost(@PathVariable Long jobId, @RequestBody JobOpeningDto jobOpeningDto) {
+        return jobOpeningService.deletePost(jobId);
+    }
+
 }
