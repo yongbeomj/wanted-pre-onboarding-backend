@@ -55,4 +55,14 @@ public class JobOpeningService {
         }
     }
 
+    // 채용공고 삭제
+    public Object deletePost(Long jobId) {
+        try {
+            jobOpeningRepository.deleteById(jobId);
+            return ResponseUtil.success(jobId);
+        } catch (Exception e){
+            return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
