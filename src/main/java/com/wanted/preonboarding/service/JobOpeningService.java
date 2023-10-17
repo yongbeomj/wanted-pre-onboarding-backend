@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wanted.preonboarding.domain.Company;
 import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,9 +39,20 @@ public class JobOpeningService {
         } catch (Exception e) {
             return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
         }
-
     }
 
+    // 채용공고 수정
+    @Transactional
+    public Object updatePost(Long jobId, JobOpeningDto jobOpeningDto) {
+        try {
+            JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+            jobOpening.updateJobOpening(jobOpeningDto);
+            jobOpeningRepository.save(jobOpening);
 
+            return ResponseUtil.success(jobOpening);
+        } catch (Exception e) {
+            return ResponseUtil.error(e, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }
