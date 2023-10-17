@@ -1,6 +1,5 @@
 package com.wanted.preonboarding.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wanted.preonboarding.domain.Company;
 import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.JobOpeningDto;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -71,6 +68,20 @@ public class JobOpeningService {
     // 채용공고 조회
     public Page<JobOpening> getPost(Pageable pageable) {
         return jobOpeningRepository.findAll(pageable);
+    }
+
+    // 채용공고 상세 조회
+    public Object getDetailPost(Long jobId) {
+        JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+        JobOpeningDto jobOpeningDto = JobOpeningDto.builder()
+                .jobId(jobOpening.getJobId())
+                .position(jobOpening.getPosition())
+                .reward(jobOpening.getReward())
+                .skill(jobOpening.getSkill())
+                .content(jobOpening.getContent())
+                .build();
+
+        return ResponseUtil.success(jobOpeningDto);
     }
 
 }
