@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/job-openings")
@@ -36,8 +38,8 @@ public class JobOpeningController {
 
     // 채용공고 조회
     @GetMapping
-    public Page<JobOpening> getPost(@PageableDefault Pageable pageable) {
-        return jobOpeningService.getPost(pageable);
+    public Page<JobOpening> getPost(@RequestParam("search") String search, @PageableDefault Pageable pageable) {
+        return jobOpeningService.getPost(search, pageable);
     }
 
     // 채용공고 상세 조회

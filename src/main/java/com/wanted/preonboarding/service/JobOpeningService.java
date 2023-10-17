@@ -66,8 +66,12 @@ public class JobOpeningService {
     }
 
     // 채용공고 조회
-    public Page<JobOpening> getPost(Pageable pageable) {
-        return jobOpeningRepository.findAll(pageable);
+    public Page<JobOpening> getPost(String search, Pageable pageable) {
+        if (search == null || search.isBlank()) {
+            return jobOpeningRepository.findAll(pageable);
+        } else {
+            return jobOpeningRepository.searchByKeyword(search, pageable);
+        }
     }
 
     // 채용공고 상세 조회
