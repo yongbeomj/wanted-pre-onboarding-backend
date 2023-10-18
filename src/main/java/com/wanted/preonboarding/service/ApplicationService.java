@@ -25,11 +25,17 @@ public class ApplicationService {
             Long jobId = applicationDto.getJobId();
             Long userId = applicationDto.getUserId();
 
-            // validation
-            applicationRepository.findByUserId(jobId, userId);
-
             JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
             User user = userRepository.getReferenceById(userId);
+
+            if (jobOpening.getJobId() == null) {
+                throw new IllegalArgumentException("Job ID is required");
+            } else if (user.getUserId() == null) {
+                throw new IllegalArgumentException("User ID is required");
+            }
+
+            applicationRepository.findByUserId(jobId, userId);
+
             Application application = Application.builder()
                     .user(user)
                     .jobOpening(jobOpening)
