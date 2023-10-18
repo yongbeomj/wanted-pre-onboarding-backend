@@ -14,14 +14,14 @@ public class Application extends DateField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long app_id; // ID
+    private Long appId; // ID
 
-    @JoinColumn(name = "userId")
     @ManyToOne(optional = false)
-    private User user; // 지원자 ID
-
     @JoinColumn(name = "jobId")
-    @ManyToOne(optional = false)
     private JobOpening jobOpening; // 채용공고 ID
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userId")
+    private User user; // 지원자 ID
 
 }
