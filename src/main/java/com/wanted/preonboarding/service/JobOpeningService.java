@@ -27,7 +27,12 @@ public class JobOpeningService {
     @Transactional
     public Object savePost(JobOpeningReqDto jobOpeningReqDto) {
         try {
+            // validation
             Company company = companyRepository.getReferenceById(jobOpeningReqDto.getCompanyId());
+            if (company.getCompanyId() == null) {
+                throw new IllegalArgumentException("Company ID is required");
+            }
+
             JobOpening jobOpening = JobOpening.builder()
                     .company(company)
                     .position(jobOpeningReqDto.getPosition())
@@ -48,6 +53,10 @@ public class JobOpeningService {
     public Object updatePost(Long jobId, JobOpeningReqDto jobOpeningReqDto) {
         try {
             JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+            if (jobOpening.getJobId() == null) {
+                throw new IllegalArgumentException("Job ID is required");
+            }
+
             jobOpening.updateJobOpening(jobOpeningReqDto);
             jobOpeningRepository.save(jobOpening);
 
@@ -62,6 +71,11 @@ public class JobOpeningService {
     // 채용공고 삭제
     public Object deletePost(Long jobId) {
         try {
+            JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+            if (jobOpening.getJobId() == null) {
+                throw new IllegalArgumentException("Job ID is required");
+            }
+
             jobOpeningRepository.deleteById(jobId);
             return ResponseUtil.success();
         } catch (Exception e){
@@ -96,6 +110,10 @@ public class JobOpeningService {
     public Object getDetailPost(Long jobId) {
         try {
             JobOpening jobOpening = jobOpeningRepository.getReferenceById(jobId);
+            if (jobOpening.getJobId() == null) {
+                throw new IllegalArgumentException("Job ID is required");
+            }
+
             List<String> jobIds = jobOpeningRepository.findByOtherPosts(jobId, jobOpening.getCompany().getCompanyId());
 
             JobOpeningDtlResDto jobOpeningDtlResDto = JobOpeningDtlResDto.toDto(jobOpening, jobIds);
