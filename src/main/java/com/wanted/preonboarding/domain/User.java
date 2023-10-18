@@ -19,9 +19,7 @@ public class User extends DateField {
     @Column(nullable = false)
     private String password; // 비밀번호
 
-    @Column(nullable = false)
     private String userName; // 이름
-
     private String email; // 이메일
 
 }

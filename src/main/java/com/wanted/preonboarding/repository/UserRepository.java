@@ -1,9 +1,9 @@
 package com.wanted.preonboarding.repository;
 
-import com.wanted.preonboarding.domain.Company;
+import com.wanted.preonboarding.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CompanyRepository extends JpaRepository<Company, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

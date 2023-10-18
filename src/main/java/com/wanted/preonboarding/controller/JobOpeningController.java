@@ -19,7 +19,7 @@ public class JobOpeningController {
     }
 
     // 채용공고 수정
-    @PostMapping(value="/{jobId}")
+    @PatchMapping(value="/{jobId}")
     public Object updatePost(@PathVariable Long jobId, @RequestBody JobOpeningReqDto jobOpeningReqDto) {
         return jobOpeningService.updatePost(jobId, jobOpeningReqDto);
     }
