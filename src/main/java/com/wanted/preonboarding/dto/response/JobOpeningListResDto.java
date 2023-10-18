@@ -4,7 +4,6 @@ import com.wanted.preonboarding.domain.JobOpening;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
