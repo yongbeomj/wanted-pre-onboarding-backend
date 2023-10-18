@@ -5,6 +5,7 @@ import com.wanted.preonboarding.domain.JobOpening;
 import com.wanted.preonboarding.dto.request.JobOpeningReqDto;
 import com.wanted.preonboarding.dto.response.JobOpeningDtlResDto;
 import com.wanted.preonboarding.dto.response.JobOpeningListResDto;
+import com.wanted.preonboarding.dto.response.JobOpeningUpdateResDto;
 import com.wanted.preonboarding.repository.CompanyRepository;
 import com.wanted.preonboarding.repository.JobOpeningRepository;
 import com.wanted.preonboarding.util.ResponseUtil;
@@ -50,7 +51,9 @@ public class JobOpeningService {
             jobOpening.updateJobOpening(jobOpeningReqDto);
             jobOpeningRepository.save(jobOpening);
 
-            return ResponseUtil.success();
+            JobOpeningUpdateResDto jobOpeningUpdateResDto = JobOpeningUpdateResDto.toDto(jobOpening);
+
+            return ResponseUtil.success(jobOpeningUpdateResDto);
         } catch (Exception e) {
             return ResponseUtil.error(e.getMessage());
         }
