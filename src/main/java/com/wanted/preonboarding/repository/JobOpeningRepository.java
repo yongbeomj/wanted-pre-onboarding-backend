@@ -16,7 +16,10 @@ public interface JobOpeningRepository extends JpaRepository<JobOpening, Long> {
 
     Optional<JobOpening> findByJobId(Long jobId);
 
+    @Query("SELECT j.jobId FROM JobOpening j JOIN j.company c WHERE j.jobId != :jobId AND c.companyId = :companyId")
+    List<String> findByOtherPosts(Long jobId, Long companyId);
+
     @Query("SELECT j FROM JobOpening j JOIN j.company c WHERE j.position LIKE %:search% OR j.skill LIKE %:search% OR c.companyName LIKE %:search%")
-    Page<JobOpening> searchByKeyword(@Param("search") String search, Pageable pageable);
+    List<JobOpening> searchByKeyword(@Param("search") String search);
 
 }

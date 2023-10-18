@@ -1,6 +1,6 @@
 package com.wanted.preonboarding.domain;
 
-import com.wanted.preonboarding.dto.JobOpeningDto;
+import com.wanted.preonboarding.dto.request.JobOpeningReqDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,11 +27,11 @@ public class JobOpening extends DateField {
     private String skill; // 사용 기술
 
     // 채용공고 수정
-    public void updateJobOpening(JobOpeningDto jobOpeningDto) {
-        if (jobOpeningDto.getPosition() != null) { this.position = jobOpeningDto.getPosition(); }
-        if (jobOpeningDto.getReward() > 0) { this.reward = jobOpeningDto.getReward(); }
-        if (jobOpeningDto.getContent() != null) { this.content = jobOpeningDto.getContent(); }
-        if (jobOpeningDto.getSkill() != null) { this.skill = jobOpeningDto.getSkill(); }
+    public void updateJobOpening(JobOpeningReqDto jobOpeningReqDto) {
+        if (jobOpeningReqDto.getPosition() != null) { this.position = jobOpeningReqDto.getPosition(); }
+        if (jobOpeningReqDto.getReward() > 0) { this.reward = jobOpeningReqDto.getReward(); }
+        if (jobOpeningReqDto.getContent() != null) { this.content = jobOpeningReqDto.getContent(); }
+        if (jobOpeningReqDto.getSkill() != null) { this.skill = jobOpeningReqDto.getSkill(); }
     }
 
 }
