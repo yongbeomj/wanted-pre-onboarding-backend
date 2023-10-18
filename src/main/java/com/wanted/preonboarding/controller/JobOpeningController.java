@@ -1,15 +1,9 @@
 package com.wanted.preonboarding.controller;
 
-import com.wanted.preonboarding.domain.JobOpening;
-import com.wanted.preonboarding.dto.JobOpeningDto;
+import com.wanted.preonboarding.dto.request.JobOpeningReqDto;
 import com.wanted.preonboarding.service.JobOpeningService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,19 +14,19 @@ public class JobOpeningController {
 
     // 채용공고 등록
     @PostMapping
-    public Object savePost(@RequestBody JobOpeningDto jobOpeningDto) {
-        return jobOpeningService.savePost(jobOpeningDto);
+    public Object savePost(@RequestBody JobOpeningReqDto jobOpeningReqDto) {
+        return jobOpeningService.savePost(jobOpeningReqDto);
     }
 
     // 채용공고 수정
     @PostMapping(value="/{jobId}")
-    public Object updatePost(@PathVariable Long jobId, @RequestBody JobOpeningDto jobOpeningDto) {
-        return jobOpeningService.updatePost(jobId, jobOpeningDto);
+    public Object updatePost(@PathVariable Long jobId, @RequestBody JobOpeningReqDto jobOpeningReqDto) {
+        return jobOpeningService.updatePost(jobId, jobOpeningReqDto);
     }
 
     // 채용공고 삭제
     @DeleteMapping("/{jobId}")
-    public Object deletePost(@PathVariable Long jobId, @RequestBody JobOpeningDto jobOpeningDto) {
+    public Object deletePost(@PathVariable Long jobId) {
         return jobOpeningService.deletePost(jobId);
     }
 

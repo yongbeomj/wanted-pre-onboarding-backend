@@ -1,36 +1,15 @@
 package com.wanted.preonboarding.dto.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
-public class ResponseDto<T> {
+public class ResponseDto {
 
     private String code;
-    private String status;
     private String message;
-
-    public ResponseDto(String code, String status, String message) {
-        this.code = code;
-        this.status = status;
-        this.message = message;
-    }
-
-    public ResponseDto(String code, String status, Throwable throwable) {
-        this(code, status, throwable.getMessage());
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 
 }
