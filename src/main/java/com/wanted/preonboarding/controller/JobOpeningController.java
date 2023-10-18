@@ -38,8 +38,8 @@ public class JobOpeningController {
 
     // 채용공고 조회
     @GetMapping
-    public Page<JobOpening> getPost(@RequestParam("search") String search, @PageableDefault Pageable pageable) {
-        return jobOpeningService.getPost(search, pageable);
+    public Object getPost(@RequestParam(required = false) String search) {
+        return jobOpeningService.getPost(search);
     }
 
     // 채용공고 상세 조회
