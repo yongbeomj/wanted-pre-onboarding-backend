@@ -18,16 +18,20 @@
 
 <details>
 <summary>여기를 눌러주세요</summary>
-<div markdown="1">       
-![directory.PNG](src%2Fmain%2Fresources%2Fstatic%2Fimage%2Fdirectory.PNG)
+<div markdown="1">   
+  
+![directory](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/e0667ccb-dba3-4bda-b214-8ae72dc93f46)
+
 </div>
 </details>
 
 ## ERD
 <details>
 <summary>여기를 눌러주세요</summary>
-<div markdown="1">       
-![erd.png](src%2Fmain%2Fresources%2Fstatic%2Fimage%2Ferd.png)
+<div markdown="1">   
+  
+![erd](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/a7b1fddc-9256-4d16-849e-ceebd1587871)
+
 </div>
 </details>
 
