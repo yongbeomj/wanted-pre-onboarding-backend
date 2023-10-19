@@ -20,7 +20,8 @@
 <summary>여기를 눌러주세요</summary>
 <div markdown="1">   
   
-![directory](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/e0667ccb-dba3-4bda-b214-8ae72dc93f46)
+![directory](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/45f0d130-c726-48f1-9bfb-e6d3f3c28a65)
+
 
 </div>
 </details>
@@ -30,7 +31,8 @@
 <summary>여기를 눌러주세요</summary>
 <div markdown="1">   
   
-![erd](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/a7b1fddc-9256-4d16-849e-ceebd1587871)
+![erd](https://github.com/yongbeomj/wanted-pre-onboarding-backend/assets/87436495/5fb41179-e8a0-4df6-8e14-2be1ec950723)
+
 
 </div>
 </details>
